@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import { join } from 'path'
 import { getAuthUser } from '@/lib/auth'
+import { supabase } from '@/lib/supabase'
 
 export async function POST(request: Request) {
   const user = await getAuthUser()
@@ -15,18 +14,23 @@ export async function POST(request: Request) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    const uploadDir = join(process.cwd(), 'public', 'uploads')
-    
-    // Ensure dir exists (already done but good practice)
-    try {
-      await mkdir(uploadDir, { recursive: true })
-    } catch {}
-
     const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`
-    const path = join(uploadDir, filename)
-    await writeFile(path, buffer)
 
-    return NextResponse.json({ url: `/uploads/${filename}` })
+    const { error } = await supabase.storage
+      .from('uploads')
+      .upload(filename, buffer, {
+        contentType: file.type,
+        upsert: true,
+      })
+
+    if (error) {
+      console.error('Supabase upload error:', error)
+      return NextResponse.json({ error: 'Upload failed: ' + error.message }, { status: 500 })
+    }
+
+    const { data } = supabase.storage.from('uploads').getPublicUrl(filename)
+
+    return NextResponse.json({ url: data.publicUrl })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
