@@ -117,6 +117,7 @@ export default function AdminProjectsPage() {
           <table>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Status</th>
@@ -127,18 +128,27 @@ export default function AdminProjectsPage() {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={5} style={{ textAlign: 'center', padding: '40px' }}>
+                  <td colSpan={6} style={{ textAlign: 'center', padding: '40px' }}>
                     <Loader2 size={24} className="animate-spin" style={{ margin: '0 auto' }} />
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={5} style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
+                  <td colSpan={6} style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
                     No projects found.
                   </td>
                 </tr>
               ) : filtered.map(project => (
                 <tr key={project.id}>
+                  <td>
+                    <div style={{ width: '64px', height: '40px', borderRadius: '4px', overflow: 'hidden', background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
+                      {project.image ? (
+                        <img src={project.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '10px' }}>No Img</div>
+                      )}
+                    </div>
+                  </td>
                   <td>
                     <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{project.title_en}</div>
                     <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{project.title_id}</div>

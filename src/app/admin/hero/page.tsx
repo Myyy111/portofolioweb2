@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Save, Loader2, CheckCircle2 } from 'lucide-react'
+import { ImageUpload } from '@/components/admin/ImageUpload'
 
 export default function AdminHeroPage() {
   const [data, setData] = useState({
@@ -13,6 +14,7 @@ export default function AdminHeroPage() {
     cta_id: 'Lihat Karya Saya',
     badge_en: 'Available for Freelance',
     badge_id: 'Tersedia untuk Freelance',
+    image: '',
     published: true
   })
   const [loading, setLoading] = useState(true)
@@ -127,6 +129,14 @@ export default function AdminHeroPage() {
               onChange={(e) => setData({ ...data, cta_id: e.target.value })}
             />
           </div>
+        </div>
+
+        <div>
+          <ImageUpload 
+            label="Hero Image / Profile Photo"
+            value={data.image || ''} 
+            onChange={(url) => setData({ ...data, image: url })} 
+          />
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>

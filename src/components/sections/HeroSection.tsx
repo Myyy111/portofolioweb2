@@ -13,6 +13,7 @@ interface HeroData {
   cta_id: string
   badge_en: string
   badge_id: string
+  image?: string
 }
 
 const DEFAULT_HERO: HeroData = {
@@ -86,90 +87,120 @@ export function HeroSection({ data }: { data?: HeroData | null }) {
       />
 
       <div className="container" style={{ position: 'relative', zIndex: 1, padding: '80px 24px' }}>
-        <div style={{ maxWidth: 780 }}>
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="badge" style={{ marginBottom: 32, display: 'inline-flex' }}>
-              <span className="pulse-dot" style={{ width: 8, height: 8, background: '#22c55e', borderRadius: '50%', flexShrink: 0 }} />
-              {badge}
-            </span>
-          </motion.div>
-
-          {/* Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            style={{
-              fontSize: 'clamp(48px, 7vw, 88px)',
-              lineHeight: 1.08,
-              fontWeight: 800,
-              color: 'var(--text-primary)',
-              marginBottom: 28,
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {title.split('\n').map((line, i, arr) =>
-              i === arr.length - 1 ? (
-                <span key={i} className="gradient-text">{line}</span>
-              ) : (
-                <span key={i}>{line}{'\n'}</span>
-              )
-            )}
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            style={{
-              fontSize: 18,
-              color: 'var(--text-secondary)',
-              maxWidth: 540,
-              marginBottom: 48,
-              lineHeight: 1.7,
-            }}
-          >
-            {subtitle}
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}
-          >
-            <a href="#projects" className="btn-primary">
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Sparkles size={16} />
-                {lang === 'en' ? 'View My Work' : 'Lihat Karya Saya'}
-                <ArrowRight size={16} />
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: hero.image ? '1.2fr 0.8fr' : '1fr', 
+          gap: '64px',
+          alignItems: 'center'
+        }}>
+          <div>
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="badge" style={{ marginBottom: 32, display: 'inline-flex' }}>
+                <span className="pulse-dot" style={{ width: 8, height: 8, background: '#22c55e', borderRadius: '50%', flexShrink: 0 }} />
+                {badge}
               </span>
-            </a>
-            <a href="#contact" className="btn-secondary">
-              <Download size={16} />
-              {lang === 'en' ? 'Download CV' : 'Unduh CV'}
-            </a>
-          </motion.div>
+            </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            style={{
-              display: 'flex',
-              gap: 48,
-              marginTop: 72,
-              flexWrap: 'wrap',
-            }}
-          >
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              style={{
+                fontSize: 'clamp(48px, 7vw, 88px)',
+                lineHeight: 1.08,
+                fontWeight: 800,
+                color: 'var(--text-primary)',
+                marginBottom: 28,
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {title.split('\n').map((line, i, arr) =>
+                i === arr.length - 1 ? (
+                  <span key={i} className="gradient-text">{line}</span>
+                ) : (
+                  <span key={i}>{line}{'\n'}</span>
+                )
+              )}
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              style={{
+                fontSize: 18,
+                color: 'var(--text-secondary)',
+                maxWidth: 540,
+                marginBottom: 48,
+                lineHeight: 1.7,
+              }}
+            >
+              {subtitle}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}
+            >
+              <a href="#projects" className="btn-primary">
+                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Sparkles size={16} />
+                  {lang === 'en' ? 'View My Work' : 'Lihat Karya Saya'}
+                  <ArrowRight size={16} />
+                </span>
+              </a>
+              <a href="#contact" className="btn-secondary">
+                <Download size={16} />
+                {lang === 'en' ? 'Download CV' : 'Unduh CV'}
+              </a>
+            </motion.div>
+          </div>
+
+          {hero.image && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{ position: 'relative' }}
+            >
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '1/1',
+                borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+                overflow: 'hidden',
+                border: '8px solid var(--surface-2)',
+                boxShadow: 'var(--shadow-lg)',
+                animation: 'blob 10s ease-in-out infinite',
+              }}>
+                <img src={hero.image} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          style={{
+            display: 'flex',
+            gap: 48,
+            marginTop: 72,
+            flexWrap: 'wrap',
+          }}
+        >
             {[
               { value: '3+', label: lang === 'en' ? 'Years Exp.' : 'Tahun Pengalaman' },
               { value: '20+', label: lang === 'en' ? 'Projects Done' : 'Proyek Selesai' },
