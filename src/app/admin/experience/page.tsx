@@ -41,13 +41,22 @@ export default function AdminExperiencePage() {
     const url = current?.id ? `/api/experience/${current.id}` : '/api/experience'
 
     try {
-      await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(current)
       })
-      setIsModalOpen(false)
-      fetchItems()
+      
+      const json = await res.json()
+      
+      if (res.ok) {
+        setIsModalOpen(false)
+        fetchItems()
+      } else {
+        alert('Error: ' + (json.message || json.error || 'Failed to save'))
+      }
+    } catch (err: any) {
+      alert('Network Error: ' + err.message)
     } finally {
       setSaving(false)
     }
