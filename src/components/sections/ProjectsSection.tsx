@@ -186,7 +186,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             >
               <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <ExternalLink size={14} />
-                {t.projects.view_project}
+                {t.projects.visit_project}
               </span>
             </a>
           )}
