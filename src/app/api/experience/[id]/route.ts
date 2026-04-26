@@ -12,12 +12,18 @@ export async function PATCH(
 
   try {
     const body = await request.json()
+    const { id: _, ...updateData } = body // Remove ID from update data
     const experience = await prisma.experience.update({
       where: { id },
-      data: body
+      data: {
+        ...updateData,
+        start_date: body.start_date ? new Date(body.start_date) : undefined,
+        end_date: body.end_date === null ? null : (body.end_date ? new Date(body.end_date) : undefined)
+      }
     })
     return NextResponse.json(experience)
   } catch (error) {
+    console.error('Update experience error:', error)
     return NextResponse.json({ error: 'Failed' }, { status: 500 })
   }
 }

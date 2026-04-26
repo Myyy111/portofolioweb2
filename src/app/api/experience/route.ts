@@ -19,9 +19,16 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json()
-    const experience = await prisma.experience.create({ data: body })
+    const experience = await prisma.experience.create({ 
+      data: {
+        ...body,
+        start_date: new Date(body.start_date),
+        end_date: body.end_date ? new Date(body.end_date) : null
+      }
+    })
     return NextResponse.json(experience)
   } catch (error) {
+    console.error('Create experience error:', error)
     return NextResponse.json({ error: 'Failed' }, { status: 500 })
   }
 }
