@@ -80,7 +80,7 @@ export const translations = {
       title: 'Proyek Unggulan',
       subtitle: 'Karya Terbaru Saya',
       view_all: 'Lihat Semua',
-      view_project: 'Lihat Proyek',
+      view_project: 'Detail Proyek',
       source_code: 'Kode Sumber',
       featured: 'Unggulan',
     },
