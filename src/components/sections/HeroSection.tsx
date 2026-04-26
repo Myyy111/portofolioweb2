@@ -13,7 +13,7 @@ interface HeroData {
   cta_id: string
   badge_en: string
   badge_id: string
-  image?: string
+  image?: string | null
 }
 
 const DEFAULT_HERO: HeroData = {
