@@ -8,6 +8,9 @@ import { ContactSection } from '@/components/sections/ContactSection'
 import { Footer } from '@/components/Footer'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 async function getPortfolioData() {
   try {
     const [hero, about, skills, projects, experiences, contact, socials] = await Promise.all([
