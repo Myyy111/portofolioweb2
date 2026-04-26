@@ -42,7 +42,7 @@ export default async function HomePage() {
         <ExperienceSection data={experiences.length > 0 ? experiences as any : null} />
         <ContactSection contact={contact} socials={socials.length > 0 ? socials : null} />
       </main>
-      <Footer />
+      <Footer contact={contact} />
     </>
   )
 }

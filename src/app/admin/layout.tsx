@@ -26,6 +26,7 @@ const SIDEBAR_ITEMS = [
   { label: 'Projects', icon: Briefcase, href: '/admin/projects' },
   { label: 'Experience', icon: Clock, href: '/admin/experience' },
   { label: 'Socials', icon: Globe, href: '/admin/socials' },
+  { label: 'Contact & Settings', icon: MessageSquare, href: '/admin/settings' },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

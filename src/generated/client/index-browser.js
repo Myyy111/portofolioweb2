@@ -219,6 +219,8 @@ exports.Prisma.ContactScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   location: 'location',
+  footer_copy: 'footer_copy',
+  footer_made: 'footer_made',
   published: 'published',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

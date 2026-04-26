@@ -3,9 +3,12 @@
 import { useLang } from '@/contexts/LangContext'
 import { Heart } from 'lucide-react'
 
-export function Footer() {
+export function Footer({ contact }: { contact?: any }) {
   const { lang, t } = useLang()
   const year = new Date().getFullYear()
+
+  const copy = contact?.footer_copy || `© ${year} Helmi. ${t.footer.rights}.`
+  const made = contact?.footer_made || t.footer.built_with
 
   return (
     <footer style={{
@@ -34,13 +37,13 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <p style={{ fontSize: 13, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 6 }}>
-          © {year} Helmi. {t.footer.rights}.
+        <div style={{ fontSize: 13, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <span>{copy}</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            {t.footer.built_with}
-            <Heart size={12} style={{ color: 'var(--accent-2)', fill: 'var(--accent-2)' }} />
+            {made}
+            <Heart size={12} style={{ color: '#ef4444', fill: '#ef4444' }} />
           </span>
-        </p>
+        </div>
 
         {/* Back to top */}
         <a

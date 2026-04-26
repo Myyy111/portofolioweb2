@@ -9203,6 +9203,8 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     location: string | null
+    footer_copy: string | null
+    footer_made: string | null
     published: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9213,6 +9215,8 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     location: string | null
+    footer_copy: string | null
+    footer_made: string | null
     published: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9223,6 +9227,8 @@ export namespace Prisma {
     email: number
     phone: number
     location: number
+    footer_copy: number
+    footer_made: number
     published: number
     createdAt: number
     updatedAt: number
@@ -9235,6 +9241,8 @@ export namespace Prisma {
     email?: true
     phone?: true
     location?: true
+    footer_copy?: true
+    footer_made?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -9245,6 +9253,8 @@ export namespace Prisma {
     email?: true
     phone?: true
     location?: true
+    footer_copy?: true
+    footer_made?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -9255,6 +9265,8 @@ export namespace Prisma {
     email?: true
     phone?: true
     location?: true
+    footer_copy?: true
+    footer_made?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -9338,6 +9350,8 @@ export namespace Prisma {
     email: string
     phone: string | null
     location: string | null
+    footer_copy: string | null
+    footer_made: string | null
     published: boolean
     createdAt: Date
     updatedAt: Date
@@ -9365,6 +9379,8 @@ export namespace Prisma {
     email?: boolean
     phone?: boolean
     location?: boolean
+    footer_copy?: boolean
+    footer_made?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9375,6 +9391,8 @@ export namespace Prisma {
     email?: boolean
     phone?: boolean
     location?: boolean
+    footer_copy?: boolean
+    footer_made?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9385,6 +9403,8 @@ export namespace Prisma {
     email?: boolean
     phone?: boolean
     location?: boolean
+    footer_copy?: boolean
+    footer_made?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9395,12 +9415,14 @@ export namespace Prisma {
     email?: boolean
     phone?: boolean
     location?: boolean
+    footer_copy?: boolean
+    footer_made?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "location" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "location" | "footer_copy" | "footer_made" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
 
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
@@ -9410,6 +9432,8 @@ export namespace Prisma {
       email: string
       phone: string | null
       location: string | null
+      footer_copy: string | null
+      footer_made: string | null
       published: boolean
       createdAt: Date
       updatedAt: Date
@@ -9840,6 +9864,8 @@ export namespace Prisma {
     readonly email: FieldRef<"Contact", 'String'>
     readonly phone: FieldRef<"Contact", 'String'>
     readonly location: FieldRef<"Contact", 'String'>
+    readonly footer_copy: FieldRef<"Contact", 'String'>
+    readonly footer_made: FieldRef<"Contact", 'String'>
     readonly published: FieldRef<"Contact", 'Boolean'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
@@ -11371,6 +11397,8 @@ export namespace Prisma {
     email: 'email',
     phone: 'phone',
     location: 'location',
+    footer_copy: 'footer_copy',
+    footer_made: 'footer_made',
     published: 'published',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12064,6 +12092,8 @@ export namespace Prisma {
     email?: StringFilter<"Contact"> | string
     phone?: StringNullableFilter<"Contact"> | string | null
     location?: StringNullableFilter<"Contact"> | string | null
+    footer_copy?: StringNullableFilter<"Contact"> | string | null
+    footer_made?: StringNullableFilter<"Contact"> | string | null
     published?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
@@ -12074,6 +12104,8 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
+    footer_copy?: SortOrderInput | SortOrder
+    footer_made?: SortOrderInput | SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12087,6 +12119,8 @@ export namespace Prisma {
     email?: StringFilter<"Contact"> | string
     phone?: StringNullableFilter<"Contact"> | string | null
     location?: StringNullableFilter<"Contact"> | string | null
+    footer_copy?: StringNullableFilter<"Contact"> | string | null
+    footer_made?: StringNullableFilter<"Contact"> | string | null
     published?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
@@ -12097,6 +12131,8 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
+    footer_copy?: SortOrderInput | SortOrder
+    footer_made?: SortOrderInput | SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12113,6 +12149,8 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Contact"> | string
     phone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     location?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    footer_copy?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    footer_made?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     published?: BoolWithAggregatesFilter<"Contact"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
@@ -12828,6 +12866,8 @@ export namespace Prisma {
     email: string
     phone?: string | null
     location?: string | null
+    footer_copy?: string | null
+    footer_made?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12838,6 +12878,8 @@ export namespace Prisma {
     email: string
     phone?: string | null
     location?: string | null
+    footer_copy?: string | null
+    footer_made?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12848,6 +12890,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_made?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12858,6 +12902,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_made?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12868,6 +12914,8 @@ export namespace Prisma {
     email: string
     phone?: string | null
     location?: string | null
+    footer_copy?: string | null
+    footer_made?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12878,6 +12926,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_made?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12888,6 +12938,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
+    footer_made?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13451,6 +13503,8 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrder
     location?: SortOrder
+    footer_copy?: SortOrder
+    footer_made?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13461,6 +13515,8 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrder
     location?: SortOrder
+    footer_copy?: SortOrder
+    footer_made?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13471,6 +13527,8 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrder
     location?: SortOrder
+    footer_copy?: SortOrder
+    footer_made?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder

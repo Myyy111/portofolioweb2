@@ -96,27 +96,6 @@ export function AboutSection({ data }: { data?: AboutData | null }) {
               </div>
 
               {/* Floating card */}
-              <motion.div
-                className="float"
-                style={{
-                  position: 'absolute',
-                  bottom: -16,
-                  right: -16,
-                  background: 'var(--surface)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 16,
-                  padding: '12px 20px',
-                  boxShadow: 'var(--shadow-lg)',
-                  zIndex: 2,
-                }}
-              >
-                <div style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500, marginBottom: 4 }}>
-                  {lang === 'en' ? 'Currently working on' : 'Sedang mengerjakan'}
-                </div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>
-                  Portfolio CMS ✨
-                </div>
-              </motion.div>
             </div>
           </motion.div>
 
