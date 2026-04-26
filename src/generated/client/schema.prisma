@@ -32,6 +32,7 @@ model Hero {
   cta_id      String   @default("Lihat Karya Saya")
   badge_en    String   @default("Available for Freelance")
   badge_id    String   @default("Tersedia untuk Freelance")
+  image       String?
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

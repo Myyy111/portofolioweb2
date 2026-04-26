@@ -141,6 +141,7 @@ exports.Prisma.HeroScalarFieldEnum = {
   cta_id: 'cta_id',
   badge_en: 'badge_en',
   badge_id: 'badge_id',
+  image: 'image',
   published: 'published',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

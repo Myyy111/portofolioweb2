@@ -2647,6 +2647,7 @@ export namespace Prisma {
     cta_id: string | null
     badge_en: string | null
     badge_id: string | null
+    image: string | null
     published: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2662,6 +2663,7 @@ export namespace Prisma {
     cta_id: string | null
     badge_en: string | null
     badge_id: string | null
+    image: string | null
     published: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2677,6 +2679,7 @@ export namespace Prisma {
     cta_id: number
     badge_en: number
     badge_id: number
+    image: number
     published: number
     createdAt: number
     updatedAt: number
@@ -2694,6 +2697,7 @@ export namespace Prisma {
     cta_id?: true
     badge_en?: true
     badge_id?: true
+    image?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -2709,6 +2713,7 @@ export namespace Prisma {
     cta_id?: true
     badge_en?: true
     badge_id?: true
+    image?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -2724,6 +2729,7 @@ export namespace Prisma {
     cta_id?: true
     badge_en?: true
     badge_id?: true
+    image?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -2812,6 +2818,7 @@ export namespace Prisma {
     cta_id: string
     badge_en: string
     badge_id: string
+    image: string | null
     published: boolean
     createdAt: Date
     updatedAt: Date
@@ -2844,6 +2851,7 @@ export namespace Prisma {
     cta_id?: boolean
     badge_en?: boolean
     badge_id?: boolean
+    image?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2859,6 +2867,7 @@ export namespace Prisma {
     cta_id?: boolean
     badge_en?: boolean
     badge_id?: boolean
+    image?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2874,6 +2883,7 @@ export namespace Prisma {
     cta_id?: boolean
     badge_en?: boolean
     badge_id?: boolean
+    image?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2889,12 +2899,13 @@ export namespace Prisma {
     cta_id?: boolean
     badge_en?: boolean
     badge_id?: boolean
+    image?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title_en" | "title_id" | "subtitle_en" | "subtitle_id" | "cta_en" | "cta_id" | "badge_en" | "badge_id" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["hero"]>
+  export type HeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title_en" | "title_id" | "subtitle_en" | "subtitle_id" | "cta_en" | "cta_id" | "badge_en" | "badge_id" | "image" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["hero"]>
 
   export type $HeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Hero"
@@ -2909,6 +2920,7 @@ export namespace Prisma {
       cta_id: string
       badge_en: string
       badge_id: string
+      image: string | null
       published: boolean
       createdAt: Date
       updatedAt: Date
@@ -3344,6 +3356,7 @@ export namespace Prisma {
     readonly cta_id: FieldRef<"Hero", 'String'>
     readonly badge_en: FieldRef<"Hero", 'String'>
     readonly badge_id: FieldRef<"Hero", 'String'>
+    readonly image: FieldRef<"Hero", 'String'>
     readonly published: FieldRef<"Hero", 'Boolean'>
     readonly createdAt: FieldRef<"Hero", 'DateTime'>
     readonly updatedAt: FieldRef<"Hero", 'DateTime'>
@@ -11262,6 +11275,7 @@ export namespace Prisma {
     cta_id: 'cta_id',
     badge_en: 'badge_en',
     badge_id: 'badge_id',
+    image: 'image',
     published: 'published',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -11560,6 +11574,7 @@ export namespace Prisma {
     cta_id?: StringFilter<"Hero"> | string
     badge_en?: StringFilter<"Hero"> | string
     badge_id?: StringFilter<"Hero"> | string
+    image?: StringNullableFilter<"Hero"> | string | null
     published?: BoolFilter<"Hero"> | boolean
     createdAt?: DateTimeFilter<"Hero"> | Date | string
     updatedAt?: DateTimeFilter<"Hero"> | Date | string
@@ -11575,6 +11590,7 @@ export namespace Prisma {
     cta_id?: SortOrder
     badge_en?: SortOrder
     badge_id?: SortOrder
+    image?: SortOrderInput | SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11593,6 +11609,7 @@ export namespace Prisma {
     cta_id?: StringFilter<"Hero"> | string
     badge_en?: StringFilter<"Hero"> | string
     badge_id?: StringFilter<"Hero"> | string
+    image?: StringNullableFilter<"Hero"> | string | null
     published?: BoolFilter<"Hero"> | boolean
     createdAt?: DateTimeFilter<"Hero"> | Date | string
     updatedAt?: DateTimeFilter<"Hero"> | Date | string
@@ -11608,6 +11625,7 @@ export namespace Prisma {
     cta_id?: SortOrder
     badge_en?: SortOrder
     badge_id?: SortOrder
+    image?: SortOrderInput | SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11629,6 +11647,7 @@ export namespace Prisma {
     cta_id?: StringWithAggregatesFilter<"Hero"> | string
     badge_en?: StringWithAggregatesFilter<"Hero"> | string
     badge_id?: StringWithAggregatesFilter<"Hero"> | string
+    image?: StringNullableWithAggregatesFilter<"Hero"> | string | null
     published?: BoolWithAggregatesFilter<"Hero"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Hero"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Hero"> | Date | string
@@ -12233,6 +12252,7 @@ export namespace Prisma {
     cta_id?: string
     badge_en?: string
     badge_id?: string
+    image?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12248,6 +12268,7 @@ export namespace Prisma {
     cta_id?: string
     badge_en?: string
     badge_id?: string
+    image?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12263,6 +12284,7 @@ export namespace Prisma {
     cta_id?: StringFieldUpdateOperationsInput | string
     badge_en?: StringFieldUpdateOperationsInput | string
     badge_id?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12278,6 +12300,7 @@ export namespace Prisma {
     cta_id?: StringFieldUpdateOperationsInput | string
     badge_en?: StringFieldUpdateOperationsInput | string
     badge_id?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12293,6 +12316,7 @@ export namespace Prisma {
     cta_id?: string
     badge_en?: string
     badge_id?: string
+    image?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12308,6 +12332,7 @@ export namespace Prisma {
     cta_id?: StringFieldUpdateOperationsInput | string
     badge_en?: StringFieldUpdateOperationsInput | string
     badge_id?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12323,6 +12348,7 @@ export namespace Prisma {
     cta_id?: StringFieldUpdateOperationsInput | string
     badge_en?: StringFieldUpdateOperationsInput | string
     badge_id?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13081,6 +13107,7 @@ export namespace Prisma {
     cta_id?: SortOrder
     badge_en?: SortOrder
     badge_id?: SortOrder
+    image?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13096,6 +13123,7 @@ export namespace Prisma {
     cta_id?: SortOrder
     badge_en?: SortOrder
     badge_id?: SortOrder
+    image?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13111,6 +13139,7 @@ export namespace Prisma {
     cta_id?: SortOrder
     badge_en?: SortOrder
     badge_id?: SortOrder
+    image?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
