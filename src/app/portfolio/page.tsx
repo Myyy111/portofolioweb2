@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
-import { Printer, Download, Globe, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
+import { Globe, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
+import { PrintButton } from '@/components/PrintButton'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -70,9 +71,7 @@ export default async function PortfolioPage() {
         <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'white', color: '#374151', padding: '10px 20px', borderRadius: 100, fontWeight: 600, fontSize: 14, textDecoration: 'none', boxShadow: '0 2px 12px rgba(0,0,0,0.1)' }}>
           <Globe size={16} /> Website
         </a>
-        <button onClick={() => window.print()} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#6c47ff', color: 'white', padding: '10px 20px', borderRadius: 100, fontWeight: 600, fontSize: 14, border: 'none', cursor: 'pointer', boxShadow: '0 4px 20px rgba(108,71,255,0.4)' }}>
-          <Printer size={16} /> Print / Save PDF
-        </button>
+        <PrintButton />
       </div>
 
       <div className="portfolio-page">
