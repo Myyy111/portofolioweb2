@@ -22,9 +22,9 @@ export async function PATCH(
       }
     })
     return NextResponse.json(experience)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Update experience error:', error)
-    return NextResponse.json({ error: 'Failed' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed', message: error.message }, { status: 500 })
   }
 }
 

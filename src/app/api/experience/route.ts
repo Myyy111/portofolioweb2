@@ -8,8 +8,8 @@ export async function GET() {
       orderBy: { start_date: 'desc' }
     })
     return NextResponse.json(experiences)
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed' }, { status: 500 })
+  } catch (error: any) {
+    return NextResponse.json({ error: 'Failed', message: error.message }, { status: 500 })
   }
 }
 
@@ -27,8 +27,8 @@ export async function POST(request: Request) {
       }
     })
     return NextResponse.json(experience)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Create experience error:', error)
-    return NextResponse.json({ error: 'Failed' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed', message: error.message }, { status: 500 })
   }
 }
