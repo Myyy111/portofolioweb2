@@ -121,23 +121,6 @@ export function SkillsSection({ data }: { data?: Skill[] | null }) {
           ))}
         </div>
 
-        {/* Tech Pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          style={{ marginTop: 64, textAlign: 'center' }}
-        >
-          <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 20 }}>
-            {lang === 'en' ? 'Also familiar with' : 'Juga familiar dengan'}
-          </p>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-            {['Docker', 'Redis', 'AWS', 'Vercel', 'GraphQL', 'MongoDB', 'Vue.js', 'Laravel', 'Python'].map(tech => (
-              <span key={tech} className="tech-tag">{tech}</span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )
