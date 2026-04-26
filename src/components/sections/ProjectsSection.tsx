@@ -153,7 +153,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {title}
         </h3>
 
-        <p style={{ color: 'var(--text-secondary)', fontSize: 14, lineHeight: 1.7, flex: 1 }}>
+        <p style={{ 
+          color: 'var(--text-secondary)', 
+          fontSize: 14, 
+          lineHeight: 1.7, 
+          flex: 1,
+          display: '-webkit-box',
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis'
+        }}>
           {desc}
         </p>
 
