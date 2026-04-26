@@ -8,6 +8,10 @@ export default function AdminSettingsPage() {
     email: '',
     phone: '',
     location: '',
+    title_en: '',
+    title_id: '',
+    desc_en: '',
+    desc_id: '',
     footer_copy: '',
     footer_made: ''
   })
@@ -89,6 +93,51 @@ export default function AdminSettingsPage() {
                 value={data.location || ''} 
                 onChange={(e) => setData({ ...data, location: e.target.value })} 
                 placeholder="Jakarta, Indonesia"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Text section */}
+        <div className="card" style={{ padding: '32px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-primary)' }}>
+            <MessageSquare size={20} color="var(--accent)" /> Contact Text & Description
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)' }}>Title (English)</label>
+              <input 
+                className="input" 
+                value={data.title_en || ''} 
+                onChange={(e) => setData({ ...data, title_en: e.target.value })} 
+                placeholder="Let's Talk"
+              />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)' }}>Title (Indonesian)</label>
+              <input 
+                className="input" 
+                value={data.title_id || ''} 
+                onChange={(e) => setData({ ...data, title_id: e.target.value })} 
+                placeholder="Mari Bicara"
+              />
+            </div>
+            <div style={{ gridColumn: 'span 2' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)' }}>Description (English)</label>
+              <textarea 
+                className="input" 
+                style={{ height: '80px' }}
+                value={data.desc_en || ''} 
+                onChange={(e) => setData({ ...data, desc_en: e.target.value })} 
+              />
+            </div>
+            <div style={{ gridColumn: 'span 2' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)' }}>Description (Indonesian)</label>
+              <textarea 
+                className="input" 
+                style={{ height: '80px' }}
+                value={data.desc_id || ''} 
+                onChange={(e) => setData({ ...data, desc_id: e.target.value })} 
               />
             </div>
           </div>

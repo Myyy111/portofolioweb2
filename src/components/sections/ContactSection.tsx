@@ -9,6 +9,10 @@ interface ContactData {
   email: string
   phone?: string | null
   location?: string | null
+  title_en?: string | null
+  title_id?: string | null
+  desc_en?: string | null
+  desc_id?: string | null
 }
 
 interface Social {
@@ -52,17 +56,37 @@ export function ContactSection({
 }) {
   const { lang, t } = useLang()
   const contactData = contact || DEFAULT_CONTACT
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
-    await new Promise(r => setTimeout(r, 1500))
-    setStatus('sent')
-    setForm({ name: '', email: '', message: '' })
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (res.ok) {
+        setStatus('sent')
+        setForm({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (err) {
+      setStatus('error')
+    }
     setTimeout(() => setStatus('idle'), 4000)
   }
+
+  const contactTitle = lang === 'en' 
+    ? (contactData.title_en || "Let's Talk") 
+    : (contactData.title_id || "Mari Bicara")
+  
+  const contactDesc = lang === 'en'
+    ? (contactData.desc_en || "I'm always open to new opportunities and collaborations. Whether you have a project, a question, or just want to say hi — my inbox is always open.")
+    : (contactData.desc_id || "Saya selalu terbuka untuk peluang dan kolaborasi baru. Apapun yang ingin Anda diskusikan, jangan ragu untuk menghubungi saya.")
 
   return (
     <section id="contact" className="section">
@@ -97,12 +121,10 @@ export function ContactSection({
             style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
           >
             <h3 style={{ fontFamily: 'Syne, sans-serif', fontSize: 24, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
-              {lang === 'en' ? "Let's Talk" : 'Mari Bicara'}
+              {contactTitle}
             </h3>
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-              {lang === 'en'
-                ? "I'm always open to new opportunities and collaborations. Whether you have a project, a question, or just want to say hi — my inbox is always open."
-                : 'Saya selalu terbuka untuk peluang dan kolaborasi baru. Apapun yang ingin Anda diskusikan, jangan ragu untuk menghubungi saya.'}
+              {contactDesc}
             </p>
 
             {/* Contact info */}

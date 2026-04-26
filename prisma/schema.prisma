@@ -33,6 +33,7 @@ model Hero {
   badge_en    String   @default("Available for Freelance")
   badge_id    String   @default("Tersedia untuk Freelance")
   image       String?
+  cv_url      String?
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -110,11 +111,25 @@ model Contact {
   email     String
   phone     String?
   location  String?
+  title_en  String?  @default("Let's Talk")
+  title_id  String?  @default("Mari Bicara")
+  desc_en   String?  @default("I'm always open to new opportunities and collaborations. Whether you have a project, a question, or just want to say hi — my inbox is always open.")
+  desc_id   String?  @default("Saya selalu terbuka untuk peluang dan kolaborasi baru. Apapun yang ingin Anda diskusikan, jangan ragu untuk menghubungi saya.")
   footer_copy String? @default("© 2026 Helmi. All rights reserved.")
   footer_made String? @default("Made with Next.js & Supabase")
   published Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
 }
 
 model PageView {

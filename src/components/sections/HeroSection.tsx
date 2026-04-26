@@ -14,11 +14,12 @@ interface HeroData {
   badge_en: string
   badge_id: string
   image?: string | null
+  cv_url?: string | null
 }
 
 const DEFAULT_HERO: HeroData = {
-  title_en: "Building Digital\nExperiences That\nInspire.",
-  title_id: "Membangun Pengalaman\nDigital yang\nMenginspirasi.",
+  title_en: "Building Digital Experiences That Inspire.",
+  title_id: "Membangun Pengalaman Digital yang Menginspirasi.",
   subtitle_en: "Full-Stack Developer specialized in crafting elegant, high-performance web applications with modern technologies.",
   subtitle_id: "Full-Stack Developer yang berfokus pada pembuatan aplikasi web elegan dan berkinerja tinggi dengan teknologi modern.",
   cta_en: "View My Work",
@@ -112,19 +113,20 @@ export function HeroSection({ data }: { data?: HeroData | null }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               style={{
-                fontSize: 'clamp(48px, 7vw, 88px)',
-                lineHeight: 1.08,
+                fontSize: 'clamp(32px, 8vw, 84px)',
+                lineHeight: 1.1,
                 fontWeight: 800,
                 color: 'var(--text-primary)',
                 marginBottom: 28,
-                whiteSpace: 'pre-line',
+                wordBreak: 'break-word',
+                overflowWrap: 'break-word',
               }}
             >
-              {title.split('\n').map((line, i, arr) =>
+              {title.split(' ').map((word, i, arr) => 
                 i === arr.length - 1 ? (
-                  <span key={i} className="gradient-text">{line}</span>
+                  <span key={i} className="gradient-text">{word}</span>
                 ) : (
-                  <span key={i}>{line}{'\n'}</span>
+                  <span key={i}>{word} </span>
                 )
               )}
             </motion.h1>
@@ -159,7 +161,12 @@ export function HeroSection({ data }: { data?: HeroData | null }) {
                   <ArrowRight size={16} />
                 </span>
               </a>
-              <a href="#contact" className="btn-secondary">
+              <a 
+                href={hero.cv_url || '#'} 
+                target={hero.cv_url ? "_blank" : undefined}
+                rel={hero.cv_url ? "noopener noreferrer" : undefined}
+                className="btn-secondary"
+              >
                 <Download size={16} />
                 {lang === 'en' ? 'Download CV' : 'Unduh CV'}
               </a>

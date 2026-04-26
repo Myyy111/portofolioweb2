@@ -63,7 +63,8 @@ export function SkillsSection({ data }: { data?: Skill[] | null }) {
   const categories = ['All', ...Array.from(new Set(skills.map(s => s.category)))]
   const [activeCategory, setActiveCategory] = useState('All')
 
-  const filtered = activeCategory === 'All' ? skills : skills.filter(s => s.category === activeCategory)
+  const filtered = (activeCategory === 'All' ? skills : skills.filter(s => s.category === activeCategory))
+    .sort((a, b) => b.level - a.level)
 
   return (
     <section id="skills" className="section" style={{ background: 'var(--bg-secondary)' }}>

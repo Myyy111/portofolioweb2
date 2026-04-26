@@ -7,8 +7,13 @@ export function Footer({ contact }: { contact?: any }) {
   const { lang, t } = useLang()
   const year = new Date().getFullYear()
 
-  const copy = contact?.footer_copy || `© ${year} Helmi. ${t.footer.rights}.`
-  const made = contact?.footer_made || t.footer.built_with
+  // Default localized values if CMS fields are empty
+  const defaultCopy = `© ${year} Helmi. ${t.footer.rights}.`
+  const defaultMade = t.footer.built_with
+
+  // Use CMS values if they exist, otherwise use defaults
+  const copyText = contact?.footer_copy || defaultCopy
+  const madeText = contact?.footer_made || defaultMade
 
   return (
     <footer style={{
@@ -37,12 +42,20 @@ export function Footer({ contact }: { contact?: any }) {
         </div>
 
         {/* Copyright */}
-        <div style={{ fontSize: 13, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span>{copy}</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            {made}
+        <div style={{ 
+          fontSize: 13, 
+          color: 'var(--text-muted)', 
+          display: 'flex', 
+          flexDirection: 'column',
+          alignItems: 'center', 
+          gap: 4, 
+          textAlign: 'center'
+        }}>
+          <div>{copyText}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            {madeText}
             <Heart size={12} style={{ color: '#ef4444', fill: '#ef4444' }} />
-          </span>
+          </div>
         </div>
 
         {/* Back to top */}

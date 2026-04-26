@@ -142,6 +142,7 @@ exports.Prisma.HeroScalarFieldEnum = {
   badge_en: 'badge_en',
   badge_id: 'badge_id',
   image: 'image',
+  cv_url: 'cv_url',
   published: 'published',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -219,11 +220,25 @@ exports.Prisma.ContactScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   location: 'location',
+  title_en: 'title_en',
+  title_id: 'title_id',
+  desc_en: 'desc_en',
+  desc_id: 'desc_id',
   footer_copy: 'footer_copy',
   footer_made: 'footer_made',
   published: 'published',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MessageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  subject: 'subject',
+  message: 'message',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.PageViewScalarFieldEnum = {
@@ -262,6 +277,7 @@ exports.Prisma.ModelName = {
   Experience: 'Experience',
   Social: 'Social',
   Contact: 'Contact',
+  Message: 'Message',
   PageView: 'PageView'
 };
 

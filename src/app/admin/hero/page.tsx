@@ -15,6 +15,7 @@ export default function AdminHeroPage() {
     badge_en: 'Available for Freelance',
     badge_id: 'Tersedia untuk Freelance',
     image: '',
+    cv_url: '',
     published: true
   })
   const [loading, setLoading] = useState(true)
@@ -129,6 +130,15 @@ export default function AdminHeroPage() {
               onChange={(e) => setData({ ...data, cta_id: e.target.value })}
             />
           </div>
+        </div>
+
+        <div>
+          <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '600' }}>CV Download URL (PDF Link)</label>
+          <input 
+            type="text" className="input" placeholder="https://example.com/cv.pdf"
+            value={data.cv_url || ''}
+            onChange={(e) => setData({ ...data, cv_url: e.target.value })}
+          />
         </div>
 
         <div>
