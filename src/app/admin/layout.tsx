@@ -14,7 +14,8 @@ import {
   LogOut,
   ChevronRight,
   Sun,
-  Moon
+  Moon,
+  MessageSquare
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
