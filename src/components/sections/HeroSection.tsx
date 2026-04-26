@@ -224,7 +224,6 @@ export function HeroSection({ data }: { data?: HeroData | null }) {
             ))}
           </motion.div>
         </div>
-      </div>
 
       {/* Scroll indicator */}
       <motion.div
