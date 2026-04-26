@@ -155,6 +155,10 @@ export default function AdminExperiencePage() {
                 <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: '600' }}>Description (EN)</label>
                 <textarea className="input" style={{ height: '80px' }} required value={current?.description_en || ''} onChange={(e) => setCurrent({ ...current, description_en: e.target.value })} />
               </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: '600' }}>Description (ID)</label>
+                <textarea className="input" style={{ height: '80px' }} required value={current?.description_id || ''} onChange={(e) => setCurrent({ ...current, description_id: e.target.value })} />
+              </div>
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '10px' }}>
                 <button type="button" onClick={() => setIsModalOpen(false)} className="btn-secondary">Cancel</button>
