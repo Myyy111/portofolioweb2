@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useLang } from '@/contexts/LangContext'
-import { Mail, MapPin, Phone, GitBranch, Link2, Send, Globe, Twitter, Facebook, Youtube } from 'lucide-react'
+import { Mail, MapPin, Phone, Link2, Send, Globe } from 'lucide-react'
 import { useState } from 'react'
 
 interface ContactData {
@@ -31,13 +31,13 @@ const DEFAULT_CONTACT: ContactData = {
 }
 
 const ICON_MAP: Record<string, React.ElementType> = {
-  github: GitBranch,
+  github: Globe,
   linkedin: Link2,
   instagram: Link2,
-  twitter: Twitter,
-  x: Twitter,
-  facebook: Facebook,
-  youtube: Youtube,
+  twitter: Globe,
+  x: Globe,
+  facebook: Globe,
+  youtube: Globe,
   dribbble: Globe,
   behance: Globe,
   link: Link2,
