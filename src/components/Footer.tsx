@@ -41,7 +41,6 @@ export function Footer({ contact }: { contact?: any }) {
         {/* Copyright — single line, language-aware */}
         <div style={{ fontSize: 13, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 6 }}>
           <span>{copyText}</span>
-          <Heart size={12} style={{ color: '#ef4444', fill: '#ef4444' }} />
         </div>
 
         {/* Back to top */}

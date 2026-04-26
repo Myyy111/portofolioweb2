@@ -115,8 +115,10 @@ model Contact {
   title_id  String?  @default("Mari Bicara")
   desc_en   String?  @default("I'm always open to new opportunities and collaborations. Whether you have a project, a question, or just want to say hi — my inbox is always open.")
   desc_id   String?  @default("Saya selalu terbuka untuk peluang dan kolaborasi baru. Apapun yang ingin Anda diskusikan, jangan ragu untuk menghubungi saya.")
-  footer_copy String? @default("© 2026 Helmi. All rights reserved.")
-  footer_made String? @default("Made with Next.js & Supabase")
+  footer_copy String? @default("© 2026 Helmi. Hak cipta dilindungi.")
+  footer_made String? @default("© 2026 Helmi. All rights reserved.")
+  portfolio_extra_en String? @default("Languages: Indonesian (Native), English (Professional)")
+  portfolio_extra_id String? @default("Bahasa: Indonesia (Native), Inggris (Profesional)")
   published Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

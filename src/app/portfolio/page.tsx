@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { Globe, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
+import { Globe, Mail, Phone, MapPin, ExternalLink, Github } from 'lucide-react'
 import { PrintButton } from '@/components/PrintButton'
 
 export const dynamic = 'force-dynamic'
@@ -24,46 +24,199 @@ async function getData() {
 
 function formatDate(date: Date | null | undefined) {
   if (!date) return 'Present'
-  return new Date(date).toLocaleDateString('id-ID', { month: 'short', year: 'numeric' })
+  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 }
 
 export default async function PortfolioPage() {
   const { hero, about, skills, projects, experiences, contact, socials } = await getData()
 
-  const name = hero?.title_id?.split('\n')[0] ?? 'Helmi Afandi'
-  const subtitle = hero?.subtitle_id ?? hero?.subtitle_en ?? 'Full-Stack Developer'
+  const name = hero?.title_en?.split('\n')[0]?.replace('.', '') ?? 'Ahmad Helmi Afandi'
+  const subtitle = hero?.subtitle_en ?? 'Full-Stack Developer'
 
   const techSkills = skills.filter(s => s.category === 'Technical' || s.category === 'Frontend' || s.category === 'Backend')
   const otherSkills = skills.filter(s => s.category !== 'Technical' && s.category !== 'Frontend' && s.category !== 'Backend')
+  
+  // Ambil data bahasa untuk informasi tambahan jika ada (gunakan ID untuk bahasa yang konsisten, atau EN)
+  const extraInfoList = (contact?.portfolio_extra_en || 'Languages: Indonesian (Native), English (Professional)').split('\n').filter(Boolean)
 
   return (
     <>
       <style>{`
-        @media print {
-          .no-print { display: none !important; }
-          body { background: white !important; }
-          .portfolio-page { padding: 0 !important; background: white !important; }
-          .portfolio-card { box-shadow: none !important; border: 1px solid #e5e7eb !important; }
-          @page { margin: 15mm; size: A4; }
+        /* CV Professional Print Styles */
+        :root {
+          --cv-text: #1f2937;
+          --cv-light: #4b5563;
+          --cv-lighter: #6b7280;
+          --cv-accent: #000000;
+          --cv-border: #d1d5db;
         }
-        body { background: #f3f4f6; }
-        .portfolio-page { min-height: 100vh; padding: 40px 20px; font-family: 'Inter', sans-serif; }
-        .portfolio-card { max-width: 900px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 10px 60px rgba(0,0,0,0.12); overflow: hidden; }
-        .port-header { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: white; padding: 48px 48px 40px; }
-        .port-body { padding: 0 48px 48px; }
-        .port-section { margin-top: 36px; }
-        .port-section-title { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #6c47ff; border-bottom: 2px solid #6c47ff; padding-bottom: 6px; margin-bottom: 20px; }
-        .port-grid { display: grid; gap: 16px; }
-        .skill-pill { display: inline-flex; align-items: center; gap: 6px; background: #f3f0ff; color: #6c47ff; border-radius: 100px; padding: 4px 12px; font-size: 12px; font-weight: 600; margin: 3px; }
-        .skill-bar-wrap { margin-bottom: 10px; }
-        .skill-bar-label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 4px; }
-        .skill-bar-bg { background: #e5e7eb; border-radius: 100px; height: 6px; }
-        .skill-bar-fill { background: linear-gradient(90deg, #6c47ff, #38bdf8); border-radius: 100px; height: 6px; }
-        .exp-item { border-left: 3px solid #6c47ff; padding-left: 20px; margin-bottom: 24px; position: relative; }
-        .exp-item::before { content: ''; position: absolute; left: -7px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: #6c47ff; }
-        .proj-item { border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
-        .tech-tag { display: inline-block; background: #f3f4f6; color: #374151; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 600; margin: 2px; }
-        .contact-row { display: flex; align-items: center; gap: 8px; color: #6b7280; font-size: 13px; margin-bottom: 8px; }
+
+        body { 
+          background: #f3f4f6; 
+          margin: 0;
+        }
+
+        .cv-container {
+          background: white;
+          max-width: 210mm; /* A4 width */
+          min-height: 297mm; /* A4 height */
+          margin: 40px auto;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          padding: 15mm 20mm;
+          font-family: 'Inter', -apple-system, sans-serif;
+          color: var(--cv-text);
+          line-height: 1.5;
+        }
+
+        .cv-header {
+          border-bottom: 2px solid var(--cv-accent);
+          padding-bottom: 12px;
+          margin-bottom: 20px;
+        }
+
+        .cv-name {
+          font-size: 28px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin: 0 0 4px 0;
+          color: var(--cv-accent);
+        }
+
+        .cv-title {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--cv-light);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin: 0 0 12px 0;
+        }
+
+        .cv-contact {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          font-size: 11px;
+          color: var(--cv-light);
+        }
+
+        .cv-contact-item {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+        
+        .cv-contact-item a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .cv-section {
+          margin-bottom: 24px;
+        }
+
+        .cv-section-title {
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: var(--cv-accent);
+          border-bottom: 1px solid var(--cv-border);
+          padding-bottom: 4px;
+          margin-bottom: 12px;
+          letter-spacing: 0.5px;
+        }
+
+        .cv-about {
+          font-size: 11.5px;
+          color: var(--cv-text);
+          text-align: justify;
+        }
+
+        /* Two columns layout for main content */
+        .cv-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 24px;
+        }
+
+        .cv-exp-item, .cv-proj-item {
+          margin-bottom: 16px;
+        }
+
+        .cv-exp-header, .cv-proj-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          margin-bottom: 4px;
+        }
+
+        .cv-item-title {
+          font-weight: 700;
+          font-size: 13px;
+          color: var(--cv-accent);
+        }
+
+        .cv-item-date {
+          font-size: 11px;
+          font-weight: 600;
+          color: var(--cv-light);
+        }
+
+        .cv-item-subtitle {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--cv-text);
+          margin-bottom: 4px;
+        }
+
+        .cv-item-desc {
+          font-size: 11.5px;
+          color: var(--cv-light);
+          margin: 0;
+          padding-left: 12px;
+        }
+
+        .cv-item-desc li {
+          margin-bottom: 4px;
+        }
+
+        .cv-skills-group {
+          margin-bottom: 12px;
+        }
+
+        .cv-skills-title {
+          font-size: 11px;
+          font-weight: 700;
+          color: var(--cv-light);
+          margin-bottom: 4px;
+          text-transform: uppercase;
+        }
+
+        .cv-skills-list {
+          font-size: 11.5px;
+          color: var(--cv-text);
+          line-height: 1.6;
+        }
+
+        .cv-tech-stack {
+          font-size: 10px;
+          color: var(--cv-lighter);
+          margin-top: 4px;
+          font-style: italic;
+        }
+
+        @media print {
+          .no-print { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+          body { background: white !important; margin: 0; }
+          .cv-container { 
+            box-shadow: none !important; 
+            margin: 0 !important; 
+            padding: 0 !important; 
+            width: 100% !important;
+            max-width: none !important;
+          }
+          @page { margin: 15mm 20mm; size: A4; }
+        }
       `}</style>
 
       {/* Print/Download button */}
@@ -74,112 +227,94 @@ export default async function PortfolioPage() {
         <PrintButton />
       </div>
 
-      <div className="portfolio-page">
-        <div className="portfolio-card">
-
-          {/* Header */}
-          <div className="port-header">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 24 }}>
-              <div>
-                <h1 style={{ fontSize: 40, fontWeight: 900, margin: 0, lineHeight: 1.1 }}>Ahmad Helmi Afandi</h1>
-                <p style={{ fontSize: 18, opacity: 0.85, marginTop: 8, marginBottom: 24 }}>{subtitle}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
-                  {contact?.email && (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, opacity: 0.9 }}>
-                      <Mail size={14} /> {contact.email}
-                    </span>
-                  )}
-                  {contact?.phone && (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, opacity: 0.9 }}>
-                      <Phone size={14} /> {contact.phone}
-                    </span>
-                  )}
-                  {contact?.location && (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, opacity: 0.9 }}>
-                      <MapPin size={14} /> {contact.location}
-                    </span>
-                  )}
-                  {socials.slice(0, 3).map(s => (
-                    <span key={s.id} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, opacity: 0.9 }}>
-                      <Globe size={14} /> {s.name}: {s.link}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              {hero?.image && (
-                <img src={hero.image} alt="Profile" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '4px solid rgba(255,255,255,0.3)' }} />
+      <div className="cv-container">
+        
+        {/* Header */}
+        <div className="cv-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1 className="cv-name">{name}</h1>
+            <h2 className="cv-title">{subtitle}</h2>
+            
+            <div className="cv-contact">
+              {contact?.email && (
+                <span className="cv-contact-item">
+                  <Mail size={12} /> <a href={\`mailto:\${contact.email}\`}>{contact.email}</a>
+                </span>
               )}
+              {contact?.phone && (
+                <span className="cv-contact-item">
+                  <Phone size={12} /> {contact.phone}
+                </span>
+              )}
+              {contact?.location && (
+                <span className="cv-contact-item">
+                  <MapPin size={12} /> {contact.location}
+                </span>
+              )}
+              {socials.filter(s => s.name.toLowerCase() === 'linkedin').map(s => (
+                <span key={s.id} className="cv-contact-item">
+                  <strong>in</strong> <a href={s.link} target="_blank" rel="noreferrer">{s.link.replace(/^https?:\\/\\/(www\\.)?/, '')}</a>
+                </span>
+              ))}
+              {socials.filter(s => s.name.toLowerCase() === 'github').map(s => (
+                <span key={s.id} className="cv-contact-item">
+                  <Github size={12} /> <a href={s.link} target="_blank" rel="noreferrer">{s.link.replace(/^https?:\\/\\/(www\\.)?/, '')}</a>
+                </span>
+              ))}
+              <span className="cv-contact-item">
+                <Globe size={12} /> <a href="https://portohelmi-ten.vercel.app">portohelmi-ten.vercel.app</a>
+              </span>
             </div>
           </div>
+          
+          {/* Photo */}
+          {(about?.image || hero?.image) && (
+            <img 
+              src={about?.image || hero?.image || ''} 
+              alt={name} 
+              style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--cv-border)' }} 
+            />
+          )}
+        </div>
 
-          <div className="port-body">
+        {/* Profile / Summary */}
+        {about && (
+          <div className="cv-section">
+            <h3 className="cv-section-title">Professional Summary</h3>
+            <p className="cv-about">
+              {about.description_en || about.description_id}
+            </p>
+          </div>
+        )}
 
-            {/* About */}
-            {about && (
-              <div className="port-section">
-                <div className="port-section-title">Tentang Saya</div>
-                <p style={{ color: '#374151', lineHeight: 1.7, fontSize: 14 }}>
-                  {about.description_id}
-                </p>
-              </div>
-            )}
-
-            {/* Two columns: Skills + Contact */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, marginTop: 36 }}>
-              {/* Skills */}
-              <div>
-                <div className="port-section-title">Keahlian Teknis</div>
-                {skills.slice(0, 10).map(skill => (
-                  <div key={skill.id} className="skill-bar-wrap">
-                    <div className="skill-bar-label">
-                      <span>{skill.name}</span>
-                      <span style={{ color: '#6c47ff' }}>{skill.level}%</span>
-                    </div>
-                    <div className="skill-bar-bg">
-                      <div className="skill-bar-fill" style={{ width: `${skill.level}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Extra info */}
-              <div>
-                <div className="port-section-title">Informasi Tambahan</div>
-                <div style={{ fontSize: 13, color: '#374151', lineHeight: 2 }}>
-                  <div><strong>Status:</strong> {hero?.badge_id ?? 'Tersedia untuk Freelance'}</div>
-                  <div><strong>Bahasa:</strong> Indonesia (Native), English (Professional)</div>
-                  <div><strong>Lokasi:</strong> {contact?.location ?? 'Indonesia'}</div>
-                </div>
-
-                {skills.length > 10 && (
-                  <div style={{ marginTop: 20 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: '#6b7280', marginBottom: 8 }}>Skill Lainnya</div>
-                    <div>
-                      {skills.slice(10).map(s => (
-                        <span key={s.id} className="skill-pill">{s.name}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
+        <div className="cv-grid">
+          {/* Main Column (Left) */}
+          <div>
+            
             {/* Experience */}
             {experiences.length > 0 && (
-              <div className="port-section">
-                <div className="port-section-title">Pengalaman Kerja</div>
+              <div className="cv-section">
+                <h3 className="cv-section-title">Experience</h3>
                 {experiences.map(exp => (
-                  <div key={exp.id} className="exp-item">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 4 }}>
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: 15, color: '#111827' }}>{exp.title_id}</div>
-                        <div style={{ fontSize: 13, color: '#6c47ff', fontWeight: 600, marginTop: 2 }}>{exp.company}{exp.location ? ` — ${exp.location}` : ''}</div>
-                      </div>
-                      <div style={{ fontSize: 12, color: '#9ca3af', fontWeight: 500, whiteSpace: 'nowrap' }}>
-                        {formatDate(exp.start_date)} — {formatDate(exp.end_date)}
-                      </div>
+                  <div key={exp.id} className="cv-exp-item">
+                    <div className="cv-exp-header">
+                      <span className="cv-item-title">{exp.title_en || exp.title_id}</span>
+                      <span className="cv-item-date">{formatDate(exp.start_date)} – {formatDate(exp.end_date)}</span>
                     </div>
-                    <p style={{ fontSize: 13, color: '#4b5563', lineHeight: 1.6, marginTop: 8 }}>{exp.description_id}</p>
+                    <div className="cv-item-subtitle">{exp.company}{exp.location ? \`, \${exp.location}\` : ''}</div>
+                    
+                    {/* Render description line by line as bullet points if it contains line breaks, else just a paragraph */}
+                    {(exp.description_en || exp.description_id).includes('\\n') ? (
+                      <ul className="cv-item-desc">
+                        {(exp.description_en || exp.description_id).split('\\n').filter(Boolean).map((line, i) => (
+                          <li key={i}>{line.replace(/^- /, '')}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="cv-item-desc" style={{ paddingLeft: 0 }}>
+                        {exp.description_en || exp.description_id}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -187,34 +322,69 @@ export default async function PortfolioPage() {
 
             {/* Projects */}
             {projects.length > 0 && (
-              <div className="port-section">
-                <div className="port-section-title">Proyek Unggulan</div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  {projects.slice(0, 6).map(proj => (
-                    <div key={proj.id} className="proj-item">
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                        <div style={{ fontWeight: 700, fontSize: 14, color: '#111827' }}>{proj.title_id}</div>
-                        {proj.featured && <span style={{ fontSize: 10, background: '#fef3c7', color: '#d97706', padding: '2px 8px', borderRadius: 100, fontWeight: 700 }}>Featured</span>}
-                      </div>
-                      <p style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.6, margin: '6px 0' }}>
-                        {proj.description_id.length > 120 ? proj.description_id.slice(0, 120) + '...' : proj.description_id}
-                      </p>
-                      <div>
-                        {proj.tech_stack.map(t => <span key={t} className="tech-tag">{t}</span>)}
-                      </div>
-                      {proj.link && (
-                        <a href={proj.link} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#6c47ff', marginTop: 8, textDecoration: 'none' }}>
-                          <ExternalLink size={11} /> Lihat Proyek
-                        </a>
-                      )}
+              <div className="cv-section">
+                <h3 className="cv-section-title">Selected Projects</h3>
+                {projects.slice(0, 4).map(proj => (
+                  <div key={proj.id} className="cv-proj-item">
+                    <div className="cv-proj-header">
+                      <span className="cv-item-title">{proj.title_en || proj.title_id}</span>
                     </div>
-                  ))}
-                </div>
+                    
+                    <p className="cv-item-desc" style={{ paddingLeft: 0, marginTop: '4px' }}>
+                      {proj.description_en || proj.description_id}
+                    </p>
+                    {proj.tech_stack.length > 0 && (
+                      <div className="cv-tech-stack">Technologies: {proj.tech_stack.join(', ')}</div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
           </div>
+
+          {/* Sidebar Column (Right) */}
+          <div>
+            
+            {/* Technical Skills */}
+            <div className="cv-section">
+              <h3 className="cv-section-title">Skills</h3>
+              
+              <div className="cv-skills-group">
+                <div className="cv-skills-title">Technical Expertise</div>
+                <div className="cv-skills-list">
+                  {techSkills.map(s => s.name).join(', ')}
+                </div>
+              </div>
+
+              {otherSkills.length > 0 && (
+                <div className="cv-skills-group">
+                  <div className="cv-skills-title">Other Skills</div>
+                  <div className="cv-skills-list">
+                    {otherSkills.map(s => s.name).join(', ')}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Additional Info */}
+            <div className="cv-section">
+              <h3 className="cv-section-title">Additional Info</h3>
+              <div className="cv-skills-list" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div><strong>Status:</strong> {hero?.badge_en || hero?.badge_id || 'Available for Freelance'}</div>
+                {extraInfoList.map((info, i) => {
+                  const parts = info.split(':');
+                  if (parts.length > 1) {
+                    return <div key={i}><strong>{parts[0].trim()}:</strong> {parts.slice(1).join(':').trim()}</div>
+                  }
+                  return <div key={i}>{info}</div>
+                })}
+              </div>
+            </div>
+
+          </div>
         </div>
+
       </div>
     </>
   )

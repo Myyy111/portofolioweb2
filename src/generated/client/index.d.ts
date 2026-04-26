@@ -9313,6 +9313,8 @@ export namespace Prisma {
     desc_id: string | null
     footer_copy: string | null
     footer_made: string | null
+    portfolio_extra_en: string | null
+    portfolio_extra_id: string | null
     published: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9329,6 +9331,8 @@ export namespace Prisma {
     desc_id: string | null
     footer_copy: string | null
     footer_made: string | null
+    portfolio_extra_en: string | null
+    portfolio_extra_id: string | null
     published: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9345,6 +9349,8 @@ export namespace Prisma {
     desc_id: number
     footer_copy: number
     footer_made: number
+    portfolio_extra_en: number
+    portfolio_extra_id: number
     published: number
     createdAt: number
     updatedAt: number
@@ -9363,6 +9369,8 @@ export namespace Prisma {
     desc_id?: true
     footer_copy?: true
     footer_made?: true
+    portfolio_extra_en?: true
+    portfolio_extra_id?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -9379,6 +9387,8 @@ export namespace Prisma {
     desc_id?: true
     footer_copy?: true
     footer_made?: true
+    portfolio_extra_en?: true
+    portfolio_extra_id?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -9395,6 +9405,8 @@ export namespace Prisma {
     desc_id?: true
     footer_copy?: true
     footer_made?: true
+    portfolio_extra_en?: true
+    portfolio_extra_id?: true
     published?: true
     createdAt?: true
     updatedAt?: true
@@ -9484,6 +9496,8 @@ export namespace Prisma {
     desc_id: string | null
     footer_copy: string | null
     footer_made: string | null
+    portfolio_extra_en: string | null
+    portfolio_extra_id: string | null
     published: boolean
     createdAt: Date
     updatedAt: Date
@@ -9517,6 +9531,8 @@ export namespace Prisma {
     desc_id?: boolean
     footer_copy?: boolean
     footer_made?: boolean
+    portfolio_extra_en?: boolean
+    portfolio_extra_id?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9533,6 +9549,8 @@ export namespace Prisma {
     desc_id?: boolean
     footer_copy?: boolean
     footer_made?: boolean
+    portfolio_extra_en?: boolean
+    portfolio_extra_id?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9549,6 +9567,8 @@ export namespace Prisma {
     desc_id?: boolean
     footer_copy?: boolean
     footer_made?: boolean
+    portfolio_extra_en?: boolean
+    portfolio_extra_id?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9565,12 +9585,14 @@ export namespace Prisma {
     desc_id?: boolean
     footer_copy?: boolean
     footer_made?: boolean
+    portfolio_extra_en?: boolean
+    portfolio_extra_id?: boolean
     published?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "location" | "title_en" | "title_id" | "desc_en" | "desc_id" | "footer_copy" | "footer_made" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "location" | "title_en" | "title_id" | "desc_en" | "desc_id" | "footer_copy" | "footer_made" | "portfolio_extra_en" | "portfolio_extra_id" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
 
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
@@ -9586,6 +9608,8 @@ export namespace Prisma {
       desc_id: string | null
       footer_copy: string | null
       footer_made: string | null
+      portfolio_extra_en: string | null
+      portfolio_extra_id: string | null
       published: boolean
       createdAt: Date
       updatedAt: Date
@@ -10022,6 +10046,8 @@ export namespace Prisma {
     readonly desc_id: FieldRef<"Contact", 'String'>
     readonly footer_copy: FieldRef<"Contact", 'String'>
     readonly footer_made: FieldRef<"Contact", 'String'>
+    readonly portfolio_extra_en: FieldRef<"Contact", 'String'>
+    readonly portfolio_extra_id: FieldRef<"Contact", 'String'>
     readonly published: FieldRef<"Contact", 'Boolean'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
@@ -12581,6 +12607,8 @@ export namespace Prisma {
     desc_id: 'desc_id',
     footer_copy: 'footer_copy',
     footer_made: 'footer_made',
+    portfolio_extra_en: 'portfolio_extra_en',
+    portfolio_extra_id: 'portfolio_extra_id',
     published: 'published',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -13298,6 +13326,8 @@ export namespace Prisma {
     desc_id?: StringNullableFilter<"Contact"> | string | null
     footer_copy?: StringNullableFilter<"Contact"> | string | null
     footer_made?: StringNullableFilter<"Contact"> | string | null
+    portfolio_extra_en?: StringNullableFilter<"Contact"> | string | null
+    portfolio_extra_id?: StringNullableFilter<"Contact"> | string | null
     published?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
@@ -13314,6 +13344,8 @@ export namespace Prisma {
     desc_id?: SortOrderInput | SortOrder
     footer_copy?: SortOrderInput | SortOrder
     footer_made?: SortOrderInput | SortOrder
+    portfolio_extra_en?: SortOrderInput | SortOrder
+    portfolio_extra_id?: SortOrderInput | SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13333,6 +13365,8 @@ export namespace Prisma {
     desc_id?: StringNullableFilter<"Contact"> | string | null
     footer_copy?: StringNullableFilter<"Contact"> | string | null
     footer_made?: StringNullableFilter<"Contact"> | string | null
+    portfolio_extra_en?: StringNullableFilter<"Contact"> | string | null
+    portfolio_extra_id?: StringNullableFilter<"Contact"> | string | null
     published?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
@@ -13349,6 +13383,8 @@ export namespace Prisma {
     desc_id?: SortOrderInput | SortOrder
     footer_copy?: SortOrderInput | SortOrder
     footer_made?: SortOrderInput | SortOrder
+    portfolio_extra_en?: SortOrderInput | SortOrder
+    portfolio_extra_id?: SortOrderInput | SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13371,6 +13407,8 @@ export namespace Prisma {
     desc_id?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     footer_copy?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     footer_made?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    portfolio_extra_en?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    portfolio_extra_id?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     published?: BoolWithAggregatesFilter<"Contact"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
@@ -14161,6 +14199,8 @@ export namespace Prisma {
     desc_id?: string | null
     footer_copy?: string | null
     footer_made?: string | null
+    portfolio_extra_en?: string | null
+    portfolio_extra_id?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14177,6 +14217,8 @@ export namespace Prisma {
     desc_id?: string | null
     footer_copy?: string | null
     footer_made?: string | null
+    portfolio_extra_en?: string | null
+    portfolio_extra_id?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14193,6 +14235,8 @@ export namespace Prisma {
     desc_id?: NullableStringFieldUpdateOperationsInput | string | null
     footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
     footer_made?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_en?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_id?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14209,6 +14253,8 @@ export namespace Prisma {
     desc_id?: NullableStringFieldUpdateOperationsInput | string | null
     footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
     footer_made?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_en?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_id?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14225,6 +14271,8 @@ export namespace Prisma {
     desc_id?: string | null
     footer_copy?: string | null
     footer_made?: string | null
+    portfolio_extra_en?: string | null
+    portfolio_extra_id?: string | null
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14241,6 +14289,8 @@ export namespace Prisma {
     desc_id?: NullableStringFieldUpdateOperationsInput | string | null
     footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
     footer_made?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_en?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_id?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14257,6 +14307,8 @@ export namespace Prisma {
     desc_id?: NullableStringFieldUpdateOperationsInput | string | null
     footer_copy?: NullableStringFieldUpdateOperationsInput | string | null
     footer_made?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_en?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio_extra_id?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14899,6 +14951,8 @@ export namespace Prisma {
     desc_id?: SortOrder
     footer_copy?: SortOrder
     footer_made?: SortOrder
+    portfolio_extra_en?: SortOrder
+    portfolio_extra_id?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14915,6 +14969,8 @@ export namespace Prisma {
     desc_id?: SortOrder
     footer_copy?: SortOrder
     footer_made?: SortOrder
+    portfolio_extra_en?: SortOrder
+    portfolio_extra_id?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14931,6 +14987,8 @@ export namespace Prisma {
     desc_id?: SortOrder
     footer_copy?: SortOrder
     footer_made?: SortOrder
+    portfolio_extra_en?: SortOrder
+    portfolio_extra_id?: SortOrder
     published?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
