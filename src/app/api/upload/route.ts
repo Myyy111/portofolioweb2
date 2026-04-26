@@ -16,6 +16,19 @@ export async function POST(request: Request) {
 
     const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`
 
+    // Check if bucket exists
+    const { data: buckets, error: bucketsError } = await supabase.storage.listBuckets()
+    if (bucketsError) {
+      console.error('Error listing buckets:', bucketsError)
+    } else {
+      const exists = buckets.find(b => b.name === 'uploads')
+      if (!exists) {
+        return NextResponse.json({ 
+          error: 'Bucket "uploads" not found in Supabase Storage. Please create it manually in the Supabase Dashboard.' 
+        }, { status: 500 })
+      }
+    }
+
     const { error } = await supabase.storage
       .from('uploads')
       .upload(filename, buffer, {
@@ -24,15 +37,21 @@ export async function POST(request: Request) {
       })
 
     if (error) {
-      console.error('Supabase upload error:', error)
-      return NextResponse.json({ error: 'Upload failed: ' + error.message }, { status: 500 })
+      console.error('Supabase upload error details:', JSON.stringify(error, null, 2))
+      return NextResponse.json({ 
+        error: 'Upload failed: ' + error.message,
+        details: error 
+      }, { status: 500 })
     }
 
     const { data } = supabase.storage.from('uploads').getPublicUrl(filename)
 
     return NextResponse.json({ url: data.publicUrl })
-  } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
+  } catch (error: any) {
+    console.error('Catch-all upload error:', error)
+    return NextResponse.json({ 
+      error: 'Upload failed internally',
+      message: error.message 
+    }, { status: 500 })
   }
 }
