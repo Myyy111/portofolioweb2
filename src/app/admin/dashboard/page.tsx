@@ -14,27 +14,32 @@ import {
 } from 'lucide-react'
 
 export default function DashboardPage() {
-  const [stats, setStats] = useState({
-    totalProjects: 0,
-    totalSkills: 0,
-    totalExperiences: 0,
-  })
+  const [data, setData] = useState<{
+    stats: { projects: number; skills: number; experiences: number; messages: number }
+    recentProjects: any[]
+  } | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // In a real app, fetch these from API
-    // Setting dummy for now
-    setStats({
-      totalProjects: 12,
-      totalSkills: 24,
-      totalExperiences: 5,
-    })
+    const fetchStats = async () => {
+      try {
+        const res = await fetch('/api/admin/stats')
+        const json = await res.json()
+        setData(json)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchStats()
   }, [])
 
   const statCards = [
-    { label: 'Total Projects', value: stats.totalProjects, icon: Briefcase, color: 'var(--accent)' },
-    { label: 'Skills Added', value: stats.totalSkills, icon: TrendingUp, color: '#10b981' },
-    { label: 'Experience Items', value: stats.totalExperiences, icon: Clock, color: '#f59e0b' },
-    { label: 'Messages', value: 0, icon: MessageSquare, color: '#ef4444' },
+    { label: 'Total Projects', value: data?.stats.projects || 0, icon: Briefcase, color: 'var(--accent)' },
+    { label: 'Skills Added', value: data?.stats.skills || 0, icon: TrendingUp, color: '#10b981' },
+    { label: 'Experience Items', value: data?.stats.experiences || 0, icon: Clock, color: '#f59e0b' },
+    { label: 'Messages', value: data?.stats.messages || 0, icon: MessageSquare, color: '#ef4444' },
   ]
 
   return (
@@ -80,8 +85,31 @@ export default function DashboardPage() {
             <h3 style={{ fontSize: '18px', fontWeight: '700' }}>Recent Projects</h3>
             <a href="/admin/projects" style={{ fontSize: '13px', color: 'var(--accent)', textDecoration: 'none' }}>View All</a>
           </div>
-          <div style={{ color: 'var(--text-secondary)', fontSize: '14px', textAlign: 'center', padding: '40px 0' }}>
-            No recent projects recorded.
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {data?.recentProjects && data.recentProjects.length > 0 ? (
+              data.recentProjects.map((project: any) => (
+                <div key={project.id} style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center',
+                  padding: '12px',
+                  background: 'var(--bg-secondary)',
+                  borderRadius: '12px'
+                }}>
+                  <div>
+                    <div style={{ fontSize: '14px', fontWeight: '600' }}>{project.title_en}</div>
+                    <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{project.category}</div>
+                  </div>
+                  <div style={{ fontSize: '12px', color: project.published ? '#10b981' : 'var(--text-secondary)' }}>
+                    {project.published ? 'Published' : 'Draft'}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div style={{ color: 'var(--text-secondary)', fontSize: '14px', textAlign: 'center', padding: '40px 0' }}>
+                No recent projects recorded.
+              </div>
+            )}
           </div>
         </div>
 
@@ -90,12 +118,12 @@ export default function DashboardPage() {
             <h3 style={{ fontSize: '18px', fontWeight: '700' }}>Quick Actions</h3>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-            <a href="/" target="_blank" className="btn-secondary" style={{ fontSize: '13px', padding: '12px' }}>
+            <a href="/" target="_blank" className="btn-secondary" style={{ fontSize: '13px', padding: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
               <ExternalLink size={14} /> Visit Site
             </a>
-            <button className="btn-primary" style={{ fontSize: '13px', padding: '12px' }}>
+            <a href="/admin/hero" className="btn-primary" style={{ fontSize: '13px', padding: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
               <Users size={14} /> Edit Hero
-            </button>
+            </a>
           </div>
         </div>
       </div>
