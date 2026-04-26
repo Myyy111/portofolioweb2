@@ -6,10 +6,15 @@ export async function GET() {
   try {
     const experiences = await prisma.experience.findMany({
       orderBy: { start_date: 'desc' }
+    }).catch(err => {
+      console.error('Prisma Experience Query Error:', err)
+      return []
     })
-    return NextResponse.json(experiences)
+    
+    return NextResponse.json(experiences || [])
   } catch (error: any) {
-    return NextResponse.json({ error: 'Failed', message: error.message }, { status: 500 })
+    console.error('Experience API GET Error:', error)
+    return NextResponse.json([], { status: 200 }) // Return empty array instead of 500 for safety
   }
 }
 
