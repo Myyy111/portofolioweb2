@@ -29,7 +29,11 @@ export function ImageUpload({ value, onChange, label = 'Upload Image' }: ImageUp
       const data = await res.json()
       if (data.url) {
         onChange(data.url)
+      } else {
+        alert('Upload Error: ' + (data.error || 'Unknown error'))
       }
+    } catch (err: any) {
+      alert('Upload failed: ' + err.message)
     } finally {
       setUploading(false)
     }
