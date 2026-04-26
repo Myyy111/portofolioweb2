@@ -126,7 +126,7 @@ export default function ProjectDetailPage() {
                   {project.github && (
                     <a href={formatLink(project.github)} target="_blank" rel="noopener noreferrer"
                       style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)', fontSize: 14, textDecoration: 'none', fontWeight: 500 }}>
-                      <Github size={14} /> Source Code
+                      <GitBranch size={14} /> Source Code
                     </a>
                   )}
                 </div>
